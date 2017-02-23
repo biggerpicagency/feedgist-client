@@ -17,7 +17,8 @@ export class MyAuthConfig extends CustomConfig {
     providers = {
       facebook: {
         clientId: '1148407601949396', 
-        url: 'http://api.feed-gist.dev/api/auth/facebookCallback'
+        url: 'http://api.feed-gist.dev/api/auth/facebookCallback',
+        redirectUrl: '/auth/facebook'
       }
     };
 }
