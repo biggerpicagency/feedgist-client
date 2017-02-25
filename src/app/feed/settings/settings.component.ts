@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../shared/api.service';
 
 @Component({
   selector: 'feed-settings',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
+    this.api.get('feed/settings')
+            .subscribe((res) => {
+              console.log(res);
+            });
   }
 
 }
