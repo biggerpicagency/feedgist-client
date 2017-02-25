@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'ng2-ui-auth';
 
 @Component({
-  selector: 'app-login',
+  selector: 'auth-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -13,7 +13,7 @@ export class LoginComponent {
 
   loginWithFacebook() {
       this.auth.authenticate('facebook')
-          .subscribe(() => {
+          .subscribe((res) => {
             this.router.navigateByUrl('/feed');
           });
   }

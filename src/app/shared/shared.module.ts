@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LocalStorageService } from './local-storage.service';
+import { ApiService } from './api.service';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import { LocalStorageService } from './local-storage.service';
     CommonModule
   ],
   providers: [
-      LocalStorageService
+      LocalStorageService,
+      ApiService
   ],
   declarations: []
 })

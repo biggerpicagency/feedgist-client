@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,13 +6,8 @@ import { Router } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
   title = 'app works!';
 
-  constructor(private router: Router) {}
-
-  ngOnInit() {
-  	console.log(2342340);
-  	this.router.navigateByUrl('/feed');
-  }
+  constructor() {}
 }

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
+import { HttpService } from './shared/http.service';
 
 import { Ng2UiAuthModule, CustomConfig } from 'ng2-ui-auth';
 
@@ -9,8 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { FeedModule } from './feed/feed.module';
 import { MainComponent } from './main.component';
-import { FeedComponent } from './feed/feed.component';
+import { environment } from '../environments/environment';
 
 export class MyAuthConfig extends CustomConfig {
     defaultHeaders = {'Content-Type': 'application/json'};
@@ -18,7 +20,10 @@ export class MyAuthConfig extends CustomConfig {
       facebook: {
         clientId: '1148407601949396', 
         url: 'http://api.feed-gist.dev/api/auth/facebookCallback',
-        redirectUrl: '/auth/facebook'
+        redirectUri: window.location.origin + '/auth/facebook',
+        requiredUrlParams: ['display', 'scope'],
+        scope: ['email', 'user_likes'],
+        scopeDelimiter: ',',
       }
     };
 }
@@ -26,8 +31,7 @@ export class MyAuthConfig extends CustomConfig {
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    FeedComponent
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +40,18 @@ export class MyAuthConfig extends CustomConfig {
     Ng2UiAuthModule.forRoot(MyAuthConfig),
     AppRoutingModule,
     AuthModule,
+    FeedModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions) => {
+        return new HttpService(backend, options);
+      },
+      deps: [XHRBackend, RequestOptions]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

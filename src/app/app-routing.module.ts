@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './shared/auth-guard';
 import { MainComponent } from './main.component';
-import { FeedComponent } from './feed/feed.component'; 
 
 const routes: Routes = [
   {
@@ -22,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'feed',
-        component: FeedComponent
+        loadChildren: './feed/feed.module#FeedModule'
       }
     ]
   }

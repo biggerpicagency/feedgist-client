@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FacebookRedirectComponent } from './facebook-redirect.component';
 
+import { LoginGuard } from './login/login-guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -13,7 +15,8 @@ const routes: Routes = [
     children: [
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [LoginGuard]
       },
       {
         path: 'logout',
@@ -30,6 +33,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [LoginGuard]
 })
 export class AuthRoutingModule { }
