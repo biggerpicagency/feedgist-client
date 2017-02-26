@@ -7,13 +7,16 @@ import { ApiService } from '../../shared/api.service';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
+  categories = [];
+  all = [];
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.api.get('feed/settings')
             .subscribe((res) => {
-              console.log(res);
+              this.categories = res.categories;
+              this.all = res.all;
             });
   }
 

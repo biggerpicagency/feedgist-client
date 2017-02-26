@@ -28,6 +28,16 @@ export class MyAuthConfig extends CustomConfig {
     };
 }
 
+export function test(backend: XHRBackend, options: RequestOptions) {
+  return new HttpService(backend, options);
+}
+
+export let httpProvider = {
+  provide: HttpService,
+  useFactory: test,
+  deps: [XHRBackend, RequestOptions]
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,15 +53,7 @@ export class MyAuthConfig extends CustomConfig {
     FeedModule,
     SharedModule
   ],
-  providers: [
-    {
-      provide: HttpService,
-      useFactory: (backend: XHRBackend, options: RequestOptions) => {
-        return new HttpService(backend, options);
-      },
-      deps: [XHRBackend, RequestOptions]
-    }
-  ],
+  providers: [httpProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

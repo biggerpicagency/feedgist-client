@@ -1,3 +1,14 @@
-<p>
-  settings works!
-</p>
+<h1>Select pages you like</h1>
+
+<div *ngFor="let category of categories">
+  <h2>{{ category.name }}</h2>
+
+  <div style="overflow-x: scroll;overflow-y: hidden;white-space: nowrap;">
+    <div style="width: 50px;display: inline-block;" *ngFor="let page of category.pages">
+      <img [src]="page.picture.url" alt="">
+      <p style="font-size: 11px;white-space: initial;">
+        {{ page.name }}
+      </p>
+    </div>
+  </div>
+</div>
