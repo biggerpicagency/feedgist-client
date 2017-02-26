@@ -9,6 +9,7 @@ import { ApiService } from '../../shared/api.service';
 export class SettingsComponent implements OnInit {
   categories = [];
   all = [];
+  selectedPages = [];
 
   constructor(private api: ApiService) { }
 
@@ -17,7 +18,28 @@ export class SettingsComponent implements OnInit {
             .subscribe((res) => {
               this.categories = res.categories;
               this.all = res.all;
+              this.selectedPages = res.selected;
             });
   }
 
+  selectPage(pageId) {
+    let index = this.selectedPages.indexOf(pageId);
+
+    if (index > -1) {
+      this.selectedPages.splice(index, 1);
+    } else {
+      this.selectedPages.push(pageId);
+    }
+  }
+
+  isSelected(pageId) {
+    return this.selectedPages.indexOf(pageId) > -1;
+  }
+
+  save() {
+    this.api.put('feed/settings', {
+      pages: this.selectedPages
+    })
+    .subscribe();
+  }
 }

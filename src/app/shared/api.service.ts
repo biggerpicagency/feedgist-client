@@ -22,6 +22,22 @@ export class ApiService {
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  put(url, data) {
+    return this.http.put(environment.apiEndpoint + url, JSON.stringify(data))
+                    .map((res) => {
+                        return this.apiResponse(res);
+                    })
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  post(url, data) {
+    return this.http.post(environment.apiEndpoint + url, JSON.stringify(data))
+                    .map((res) => {
+                        return this.apiResponse(res);
+                    })
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   apiResponse(res) {
     let response = res.json();
     this.setRefreshedToken(response);
