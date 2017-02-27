@@ -5,7 +5,7 @@ import { AuthService } from 'ng2-ui-auth';
 @Component({
   selector: 'auth-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 

@@ -1,4 +1,15 @@
-MAIN LAYOUT HERE
-<a [routerLink]="['/feed']">Feed</a>
-<a [routerLink]="['/auth/logout']">Logout</a>
-<router-outlet></router-outlet>
+<div class="navbar">
+  <a [routerLink]="['/feed']">
+    <img class="navbar__logo" src="/assets/logo.svg" alt="Feed Gist">
+  </a>
+
+  <div class="navbar__icons">
+    <button md-mini-fab [routerLink]="['/feed/settings']">
+      <md-icon>settings</md-icon>
+    </button>
+  </div>
+</div>
+
+<div class="main container">
+  <router-outlet></router-outlet>
+</div>

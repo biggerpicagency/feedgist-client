@@ -4,7 +4,7 @@ import { ApiService } from '../../shared/api.service';
 @Component({
   selector: 'feed-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
   categories = [];

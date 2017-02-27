@@ -1,7 +1,26 @@
-<p>
-  list works!
-</p>
+<div class="loading" *ngIf="loadingShow">
+  <md-progress-circle 
+    [mode]="'indeterminate'" 
+    [color]="'accent'" >
+  </md-progress-circle>
+</div>
 
-<p>
-  <a [routerLink]="['/feed/settings']">Settings</a>
-</p>
+<md-card class="post" *ngFor="let post of list">
+  <a class="post__author" href="{{post.from.link}}" target="_blank">
+    <md-card-header>
+      <img md-card-avatar src="{{post.from.picture.data.url}}" width="40">
+      <md-card-title class="post__publisher">{{post.from.name}}</md-card-title>
+      <md-card-subtitle>{{post.created_time | date:'medium'}}</md-card-subtitle>
+    </md-card-header>
+  </a>
+  <a *ngIf="post.full_picture" href="{{post.link}}" target="_blank">
+    <img class="post__image" md-card-image src="{{post.full_picture}}">
+  </a>
+  <md-card-content class="post__content">
+    <p [innerHTML]="post.message"></p>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button>LIKE</button>
+    <button md-button>SHARE</button>
+  </md-card-actions>
+</md-card>

@@ -1,0 +1,26 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    background-color: #fff;
+    border-bottom: 2px solid #ededed;
+
+    text-align: center;
+
+    &__logo {
+        height: 45px;
+    }
+
+    &__icons {
+        position: absolute;
+        top: 4px;
+        right: 20px;
+    }
+}
+
+.main {
+    margin-top: 60px;
+}
