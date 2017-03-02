@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.scss';
+@import '~normalize.css/normalize.css';
+
+body {
+    background-color: #f6f6f6;
+}
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}

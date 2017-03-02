@@ -1,0 +1,19 @@
+<h1>Select pages you like</h1>
+<button (click)="save()" [disabled]="selectedPages.length === 0">Save {{selectedPages.length > 0 ? '(' + selectedPages.length + ')' : ''}}</button>
+
+<section *ngFor="let category of categories">
+  <h2>{{ category.name }}</h2>
+
+  <div class="scroller">
+    <article 
+      class="page" 
+      *ngFor="let page of category.pages"
+      (click)="selectPage(page.id)"
+      [ngClass]="{'page--selected': isSelected(page.id)}">
+        <img [src]="page.picture.url" alt="">
+        <h3 class="page__name">
+          {{ page.name }}
+        </h3>
+    </article>
+  </div>
+</section>

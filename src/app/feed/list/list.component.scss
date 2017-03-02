@@ -1,0 +1,44 @@
+.loading {
+    width: 100%;
+    text-align: center;
+}
+
+.mat-progress-circle {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.post {
+    margin-top: 1em;
+
+    &__author {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    &__image.mat-card-image {
+        margin-top: 0;
+
+        @media all and (max-width: 600px) {
+            margin-top: 20px;
+        }
+    }
+
+    &__content {
+        margin-top: 10px;
+    }
+
+    &__publisher {
+        font-weight: 600;
+    }
+}
+
+:host /deep/ .post__content a {
+    color: #00b09d;
+    transition: all 0.2s ease;
+
+    &:hover {
+        color: #00766a;
+    }
+}

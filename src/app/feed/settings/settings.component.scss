@@ -1,0 +1,29 @@
+.scroller {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.page {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 50px;
+}
+
+.page--selected:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+
+    background-color: #fff;
+    opacity: 0.5;
+}
+
+.page__name {
+    font-size: 11px;
+    white-space: initial;
+}
