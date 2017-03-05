@@ -1,19 +1,66 @@
-<h1>Select pages you like</h1>
-<button (click)="save()" [disabled]="selectedPages.length === 0">Save {{selectedPages.length > 0 ? '(' + selectedPages.length + ')' : ''}}</button>
+<div class="search">
+  <input class="search__field" #searchTerm [disabled]="loadingShow" (keyup)="searchTerm$.next($event.target.value)" placeholder="Search pages">
+</div>
 
-<section *ngFor="let category of categories">
-  <h2>{{ category.name }}</h2>
-
-  <div class="scroller">
-    <article 
-      class="page" 
-      *ngFor="let page of category.pages"
-      (click)="selectPage(page.id)"
-      [ngClass]="{'page--selected': isSelected(page.id)}">
-        <img [src]="page.picture.url" alt="">
-        <h3 class="page__name">
-          {{ page.name }}
-        </h3>
-    </article>
+<div class="settings">
+  <div class="container" *ngIf="!loadingShow">
+    <div class="information">
+      <h1 class="headline headline--2">Select pages you like</h1>
+      <p>Choose only the pages you want to populate your feed from.</p>
+    </div>
   </div>
-</section>
+
+  <div class="loading" *ngIf="loadingShow">
+    <md-progress-circle 
+      [mode]="'indeterminate'" 
+      [color]="'accent'" >
+    </md-progress-circle>
+    <p class="loading__info">We are looking for all pages you like on your Facebook Profile, it may take a while...</p>
+  </div>
+
+  <div *ngIf="searchTerm.value == ''">
+    <section class="category" *ngFor="let category of categories">
+      <h2 class="headline headline--1">
+        {{ category.name }} 
+        <small class="category__counter">({{ category.pages.length }})</small>
+      </h2>
+
+      <div class="category__pages">
+        <article 
+          class="page" 
+          *ngFor="let page of category.pages"
+          (click)="selectPage(page)"
+          [ngClass]="{'page--selected': page.selected}">
+            <img [src]="page.picture.url" alt="">
+            <h3 class="headline headline--3 page__name">
+              {{ page.name | cutText:true:25:'...' }}
+            </h3>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <section class="category" *ngIf="results && searchTerm.value !== ''">
+    <h2 class="headline headline--1">
+      Search Results
+      <small class="category__counter">({{ results.length }})</small>
+    </h2>
+
+    <p *ngIf="results.length === 0">No results.</p>
+
+    <div class="category__pages">
+      <article 
+        class="page" 
+        *ngFor="let page of results"
+        (click)="selectPage(page)"
+        [ngClass]="{'page--selected': isSelected(page.id)}">
+          <img [src]="page.picture.url" alt="">
+          <h3 class="headline headline--3 page__name">
+            {{ page.name | cutText:true:25:'...' }}
+          </h3>
+      </article>
+    </div>
+
+    <button (click)="clearSearchTerm(searchTerm)" md-raised-button>Done</button>
+  </section>
+</div>

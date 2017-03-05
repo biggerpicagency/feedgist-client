@@ -1,0 +1,55 @@
+.category {
+    position: relative;
+
+    &:not(.category--plain) {
+        padding: 1em;
+        margin-top: 1em;
+        border-radius: 4px;
+
+        background-color: #fff;
+    }
+
+    &--plain {
+        .mat-button, 
+        .mat-icon-button, 
+        .mat-raised-button {
+            margin-top: 1em;
+            color: #222;
+            line-height: 25px;
+        }
+    }
+
+    &__counter {
+        color: #3abcca;
+    }
+
+    &__pages {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+
+        margin: 1em 0;
+    }
+
+    &__loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        background-color: rgba(#323232, 0.7);
+
+        &Spinner {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .mat-progress-circle {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<div class="category category--plain">
+  <h3 class="headline headline--3">
+    Your selected pages: {{pages.length}}
+  </h3>
+
+  <div class="category__pages">
+    <article 
+      class="page page--selectedBlack" 
+      *ngFor="let page of pages"
+      (click)="unSelect(page)">
+        <img [src]="page.picture.url" alt="">
+    </article>
+  </div>
+
+  <button md-raised-button (click)="save()">Save</button>
+
+  <div class="category__loading" *ngIf="loading">
+    <div class="category__loadingSpinner loading">
+      <md-progress-circle 
+        [mode]="'indeterminate'" 
+        [color]="'accent'" >
+      </md-progress-circle>
+    </div>
+  </div>
+</div>

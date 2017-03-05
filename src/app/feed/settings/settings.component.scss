@@ -1,29 +1,31 @@
-.scroller {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
+.settings {
+    padding: 40px 0 150px 0;
 }
 
-.page {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    width: 50px;
-}
-
-.page--selected:after {
-    position: absolute;
-    top: 0;
+.search {
+    position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
-    content: '';
+    z-index: 100;
 
-    background-color: #fff;
-    opacity: 0.5;
-}
+    padding: 0.5em;
+    background-color: #3bd3d7;
 
-.page__name {
-    font-size: 11px;
-    white-space: initial;
+    &__field {
+        width: 100%;
+
+        background-color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5em;
+
+        font-size: 0.7em;
+        color: #666;
+        text-align: center;
+        transition: all 0.2s ease;
+
+        &:focus {
+            text-align: left;
+        }
+    }
 }

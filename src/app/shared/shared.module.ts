@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LocalStorageService } from './local-storage.service';
 import { ApiService } from './api.service';
+import { CutTextPipe } from './cut-text.pipe';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { ApiService } from './api.service';
       LocalStorageService,
       ApiService
   ],
-  declarations: []
+  declarations: [CutTextPipe],
+  exports: [CutTextPipe]
 })
 export class SharedModule { }

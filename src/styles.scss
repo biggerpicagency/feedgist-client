@@ -2,18 +2,68 @@
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.scss';
 @import '~normalize.css/normalize.css';
 
+html {
+    box-sizing: border-box;
+}
+
+*, 
+*:before, 
+*:after {
+    box-sizing: inherit;
+}
+
+html,
+body,
+button {
+    -moz-osx-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
 body {
-    background-color: #f6f6f6;
+    background-color: #efefef;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
 }
 
 .container {
     position: relative;
     overflow: hidden;
     width: 90%;
-    max-width: 600px;
+    max-width: 1180px;
     margin: 0 auto;
 }
 
 a {
     text-decoration: none;
+}
+
+.clearfix:after { 
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+}
+
+@import 'scss/_masonry';
+@import 'scss/_headline';
+@import 'scss/_information';
+@import 'scss/_page';
+@import 'scss/_category';
+@import 'scss/_loading';
+
+snack-bar-container {
+    height: auto !important;
+    color: #fff;
+    box-sizing: border-box !important;
+    padding: 14px 10px !important
+}
+
+img.ng2-lazyloaded {
+    animation: fadein .5s;
+}
+        
+.cdk-overlay-pane {
+    width: 95%;
 }

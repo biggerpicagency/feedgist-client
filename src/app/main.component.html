@@ -1,10 +1,25 @@
 <div class="navbar">
   <div class="container">
     <a [routerLink]="['/feed']">
-      <img class="navbar__logo" src="/assets/fg_logo-white.svg" alt="Feed Gist">
+      <img class="navbar__logo" src="/assets/logo.svg" alt="Feed Gist">
     </a>
 
-    <div class="navbar__icons">
+    <div class="navbar__icons navbar__icons--left navbar__icons--navy">
+      <button md-icon-button>
+        <md-icon>info</md-icon>
+      </button>
+    </div>
+
+    <div class="navbar__icons navbar__icons--right">
+      <button [routerLink]="['/feed/settings']" md-icon-button>
+        <md-icon>settings</md-icon>
+      </button>
+
+      <button md-icon-button>
+        <md-icon>notifications_on</md-icon>
+      </button>
+
+      <!--
       <button md-icon-button [mdMenuTriggerFor]="menu">
         <md-icon>more_vert</md-icon>
       </button>
@@ -22,10 +37,11 @@
       <button md-icon-button [mdMenuTriggerFor]="menu">
         <md-icon>info</md-icon>
       </button>
+    -->
     </div>
   </div>
 </div>
 
-<div class="main container">
+<div class="main">
   <router-outlet></router-outlet>
 </div>

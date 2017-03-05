@@ -10,6 +10,7 @@ import { MaterialModule } from '@angular/material';
 export class ListComponent implements OnInit {
   list = [];
   loadingShow = false;
+  lazyLoadingOffset = 100;
 
   constructor(private api: ApiService) { }
 

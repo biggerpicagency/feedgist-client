@@ -1,26 +1,41 @@
-<div class="loading" *ngIf="loadingShow">
-  <md-progress-circle 
-    [mode]="'indeterminate'" 
-    [color]="'accent'" >
-  </md-progress-circle>
-</div>
+<div class="main container">
+  <div class="loading" *ngIf="loadingShow">
+    <md-progress-circle 
+      [mode]="'indeterminate'" 
+      [color]="'accent'" >
+    </md-progress-circle>
+  </div>
 
-<md-card class="post" *ngFor="let post of list">
-  <a class="post__author" href="{{post.from.link}}" target="_blank">
-    <md-card-header>
-      <img md-card-avatar src="{{post.from.picture.data.url}}" width="40">
-      <md-card-title class="post__publisher">{{post.from.name}}</md-card-title>
-      <md-card-subtitle>{{post.created_time | date:'medium'}}</md-card-subtitle>
-    </md-card-header>
-  </a>
-  <a *ngIf="post.full_picture" href="{{post.link}}" target="_blank">
-    <img class="post__image" md-card-image src="{{post.full_picture}}">
-  </a>
-  <md-card-content class="post__content">
-    <p [innerHTML]="post.message"></p>
-  </md-card-content>
-  <md-card-actions>
-    <button md-button><i class="material-icons">thumb_up</i> LIKE</button>
-    <button md-button><i class="material-icons">share</i> SHARE</button>
-  </md-card-actions>
-</md-card>
+  <div class="list">
+    <div *ngFor="let post of list; let i = index">
+      <div class="clearfix" *ngIf="i % 2 == 0 && i !== 0"></div>
+
+      <div class="list__item">
+        <md-card class="post">
+          <a class="post__author" href="{{post.from.link}}" target="_blank">
+            <md-card-header>
+              <img md-card-avatar src="{{post.from.picture.data.url}}" width="40">
+              <md-card-title class="post__publisher">{{post.from.name}}</md-card-title>
+              <md-card-subtitle>{{post.created_time | date:'medium'}}</md-card-subtitle>
+            </md-card-header>
+          </a>
+          <a 
+            *ngIf="post.full_picture"
+            class="post__image" 
+            href="{{post.link}}"
+            [lazyLoad]="post.full_picture" 
+            [offset]="lazyLoadingOffset"
+            target="_blank">
+          </a>
+          <md-card-content class="post__content">
+            <p [innerHTML]="post.message"></p>
+          </md-card-content>
+          <md-card-actions class="post__buttons">
+            <button md-button><i class="material-icons">thumb_up</i> LIKE</button>
+            <button md-button><i class="material-icons">share</i> SHARE</button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</div>
