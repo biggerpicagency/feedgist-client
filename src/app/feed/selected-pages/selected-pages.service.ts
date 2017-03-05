@@ -36,8 +36,9 @@ export class SelectedPagesService {
     }
   }
 
-  init(categories, ids) {
+  init(categories, ids, pages) {
     let categoriesLength = categories.length;
+    let pagesIds = [];
 
     for (var i = categoriesLength-1; i >= 0; i--) {
       if (categories[i].pages.length) {
@@ -49,10 +50,20 @@ export class SelectedPagesService {
 
           if (isSelected) {
             this.pages.unshift(categories[i].pages[pageI]);
+            pagesIds.push(categories[i].pages[pageI].id);
           }
         }
       }
+    }
 
+    if (pages) {
+      let pagesLength = pages.length;
+
+      for (var i = pagesLength-1; i >= 0; i--) {
+        if (pagesIds.indexOf(pages[i].id) === -1) {
+          this.pages.unshift(pages[i]);
+        }
+      }
     }
   }
 }

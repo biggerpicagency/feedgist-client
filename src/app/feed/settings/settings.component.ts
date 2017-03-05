@@ -60,8 +60,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
             .subscribe((res) => {
               this.searchService.pages = res.all;
               this.categories = res.categories;
-              this.selected.pagesIds = res.selected;
-              this.selected.init(this.categories, this.selected.pagesIds);
+              this.selected.pagesIds = res.selected.ids;
+              this.selected.init(this.categories, this.selected.pagesIds, res.selected.pages);
 
               this.openSelectedPagesBar();
               this.loadingShow = false;
