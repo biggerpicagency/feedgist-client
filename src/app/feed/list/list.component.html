@@ -31,8 +31,8 @@
             <p [innerHTML]="post.message"></p>
           </md-card-content>
           <md-card-actions class="post__buttons">
-            <button md-button><i class="material-icons">thumb_up</i> LIKE</button>
-            <button md-button><i class="material-icons">share</i> SHARE</button>
+            <button md-button><i class="material-icons">thumb_up</i> <b>LIKE</b> ({{post.likes.summary.total_count}})</button>
+            <button md-button><i class="material-icons">share</i> <b>SHARE</b></button>
           </md-card-actions>
         </md-card>
       </div>
