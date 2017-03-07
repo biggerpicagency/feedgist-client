@@ -1,4 +1,8 @@
-AUTH ROOT KURWO!
-<a [routerLink]="['/auth/login']">Login</a>
-<a [routerLink]="['/auth/logout']">Logout</a>
-<router-outlet></router-outlet>
+<div class="auth">
+    <div class="auth__container">
+        <div class="container-small">
+            <img class="auth__logo" src="/assets/fg_logo-white-stacked.svg" alt="Feed Gist">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

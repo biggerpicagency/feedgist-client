@@ -22,6 +22,10 @@ const routes: Routes = [
       {
         path: 'feed',
         loadChildren: './feed/feed.module#FeedModule'
+      },
+      {
+        path: 'settings',
+        loadChildren: './settings/settings.module#SettingsModule'
       }
     ]
   }

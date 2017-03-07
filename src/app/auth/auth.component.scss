@@ -1,0 +1,22 @@
+.auth {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+
+    &__container {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+
+        text-align: center;
+        color: #fff;
+        
+        transform: translateY(-50%);
+    }
+
+    &__logo {
+        width: 100px;
+        margin: 0 auto;
+    }
+}

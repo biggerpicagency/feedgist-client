@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { FeedModule } from './feed/feed.module';
+import { SettingsModule } from './settings/settings.module';
 import { MainComponent } from './main.component';
 import { environment } from '../environments/environment';
 
@@ -54,6 +55,7 @@ export let httpProvider = {
     AppRoutingModule,
     AuthModule,
     FeedModule,
+    SettingsModule,
     SharedModule
   ],
   providers: [httpProvider],
