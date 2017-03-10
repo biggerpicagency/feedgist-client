@@ -12,9 +12,9 @@
 
       <div class="list__item">
         <md-card class="post">
-          <a class="post__author" href="{{post.from.link}}" target="_blank">
+          <a class="post__author" href="{{post.from.link}}" rel="noopener" target="_blank">
             <md-card-header>
-              <img md-card-avatar src="{{post.from.picture.data.url}}" width="40">
+              <img md-card-avatar src="{{post.from.picture.data.url}}" alt="" width="40">
               <md-card-title class="post__publisher">{{post.from.name}}</md-card-title>
               <md-card-subtitle>{{post.created_time | date:'medium'}}</md-card-subtitle>
             </md-card-header>
@@ -23,6 +23,7 @@
             *ngIf="post.full_picture"
             class="post__image" 
             href="{{post.link}}"
+            rel="noopener"
             [lazyLoad]="post.full_picture" 
             [offset]="lazyLoadingOffset"
             target="_blank">

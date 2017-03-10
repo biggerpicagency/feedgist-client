@@ -44,6 +44,7 @@ body {
     @extend %containerCommonStyles;
     width: 90%;
     max-width: 1180px;
+    overflow: hidden;
 }
 
 .container-small {
