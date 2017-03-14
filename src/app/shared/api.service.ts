@@ -17,25 +17,45 @@ export class ApiService {
   get(url) {
     return this.http.get(environment.apiEndpoint + url)
                     .map((res) => {
+                        console.log(res.status);
                         return this.apiResponse(res);
                     })
-                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+                    .catch((error:any) => {
+                      return Observable.throw(error.json().error || 'Server error')
+                    });
   }
 
   put(url, data) {
     return this.http.put(environment.apiEndpoint + url, JSON.stringify(data))
                     .map((res) => {
+                        console.log(res.status);
                         return this.apiResponse(res);
                     })
-                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+                    .catch((error:any) => {
+                      return Observable.throw(error.json().error || 'Server error')
+                    });
   }
 
   post(url, data) {
     return this.http.post(environment.apiEndpoint + url, JSON.stringify(data))
                     .map((res) => {
+                        console.log(res.status);
                         return this.apiResponse(res);
                     })
-                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+                    .catch((error:any) => {
+                      return Observable.throw(error.json().error || 'Server error')
+                    });
+  }
+
+  delete(url) {
+    return this.http.delete(environment.apiEndpoint + url)
+                    .map((res) => {
+                        console.log(res.status);
+                        return this.apiResponse(res);
+                    })
+                    .catch((error:any) => {
+                      return Observable.throw(error.json().error || 'Server error')
+                    });
   }
 
   apiResponse(res) {

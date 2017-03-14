@@ -11,26 +11,29 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,600" rel="stylesheet"> 
   <link rel="manifest" href="/manifest.json">
 
-  <!--
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
   <script>
     var OneSignal = window.OneSignal || [];
+    var OneSignalLib = OneSignal;
     OneSignal.push(["init", {
       allowLocalhostAsSecureOrigin: true,
       appId: "46054487-2b88-4f9f-bc25-8b479ac8dcc4",
-      autoRegister: true,
+      autoRegister: false,
       notifyButton: {
-        enable: true /* Set to false to hide */
+        enable: false
       }
     }]);
 
     OneSignal.push(function() {
+      OneSignal.showHttpPermissionRequest();
       OneSignal.getUserId(function(userId) {
         console.log("OneSignal User ID:", userId);
         // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
       });
     });
-  </script>-->
+  </script>
+
+  <!--
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
@@ -41,7 +44,7 @@
       console.log('ServiceWorker registration failed: ', err);
     });
   }
-</script>
+</script>-->
 
 </head>
 <body>

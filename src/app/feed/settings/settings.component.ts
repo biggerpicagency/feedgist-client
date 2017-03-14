@@ -43,6 +43,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   selectPage(page) {
+    if (this.selected.pagesIds.length === 0) {
+      this.openSelectedPagesBar();
+    }
+    
     this.selected.select(page);
   }
 
@@ -63,7 +67,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
               this.selected.pagesIds = res.selected.ids;
               this.selected.init(this.categories, this.selected.pagesIds, res.selected.pages);
 
-              this.openSelectedPagesBar();
+              if (res.selected.pages.length > 0) {
+                this.openSelectedPagesBar();
+              }
+              
               this.loadingShow = false;
             });
   }

@@ -31,12 +31,11 @@ body {
     background-image: radial-gradient(ellipse farthest-corner at center, #3BE4DF 15%, #3B5999 100%);
     font-family: 'Roboto', sans-serif;
     font-weight: 200;
+    color: #555;
 }
 
 %containerCommonStyles {
     position: relative;
-    //overflow: hidden;
-
     margin: 0 auto;
 }
 

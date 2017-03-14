@@ -1,43 +1,57 @@
-<div class="container">
-  <div class="information">
-    <h1 class="headline headline--2">Push Notifications</h1>
-    <p>FeedGist can notify you about unread posts from your favorite pages. Thanks to this option you will never miss out interesting content!</p>
+<div class="container-small">
+  <div *ngIf="ready && isWebPushSupported">
+    <div class="information">
+      <h1 class="headline headline--2">Your Alerts</h1>
+      <p>
+        Control push notification settings that'll alert you to new publishes from your followed pages. You won't miss a thing with FeedGist.
+      </p>
+    </div>
+
+    <md-slide-toggle
+      [color]="checkedColor"
+      [(ngModel)]="webPushSubscribed"
+      (ngModelChange)="changeWebPushSubscription()">
+      Notify me
+    </md-slide-toggle>
+
+    <div *ngIf="webPushSubscribed">
+      <form (ngSubmit)="save()">
+        <md-radio-group [(ngModel)]="settings.reminder_type" name="subscription_freq">
+          <md-radio-button value="1">Once a day</md-radio-button>
+          <md-radio-button value="2">Twice a day</md-radio-button>
+        </md-radio-group>
+
+        <div *ngIf="settings.reminder_type == 1">
+          <md-select placeholder="Choose hour" [(ngModel)]="settings.reminder_first_at" name="1st_reminder">
+            <md-option *ngFor="let hour of hours" [value]="hour">
+              {{hour}}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div *ngIf="settings.reminder_type == 2">
+          <md-select placeholder="1st Reminder at" [(ngModel)]="settings.reminder_first_at" name="1st_reminder">
+            <md-option *ngFor="let hour of hours" [value]="hour">
+              {{hour}}
+            </md-option>
+          </md-select>
+
+          <md-select placeholder="2nd Reminder at" [(ngModel)]="settings.reminder_second_at" name="2nd_reminder">
+            <md-option *ngFor="let hour of hours" [value]="hour">
+              {{hour}}
+            </md-option>
+          </md-select>
+        </div>
+
+        <button md-raised-button type="submit">Save</button>
+      </form>
+    </div>
   </div>
 
-  <md-slide-toggle
-      [color]="checkedColor"
-      [(ngModel)]="checked">
-    Notify me
-  </md-slide-toggle>
-
-  <div *ngIf="checked">
-    <md-radio-group [(ngModel)]="reminder_type">
-      <md-radio-button value="1">Once a day</md-radio-button>
-      <md-radio-button value="2">Twice a day</md-radio-button>
-    </md-radio-group>
-
-    <div *ngIf="reminder_type == 1">
-      <md-select placeholder="Choose hour" [(ngModel)]="reminder_first_at" name="hour">
-        <md-option *ngFor="let hour of hours" [value]="hour">
-          {{hour}}
-        </md-option>
-      </md-select>
+  <div *ngIf="ready && !isWebPushSupported">
+    <div class="information">
+      <h1 class="headline headline--2">Your Alerts</h1>
+      <p>Sorry, your browser does not support Web Push Notifications.</p>
     </div>
-
-    <div *ngIf="reminder_type == 2">
-      <md-select placeholder="1st Reminder at" [(ngModel)]="reminder_first_at" name="hour">
-        <md-option *ngFor="let hour of hours" [value]="hour">
-          {{hour}}
-        </md-option>
-      </md-select>
-
-      <md-select placeholder="2nd Reminder at" [(ngModel)]="reminder_second_at" name="hour">
-        <md-option *ngFor="let hour of hours" [value]="hour">
-          {{hour}}
-        </md-option>
-      </md-select>
-    </div>
-
-    <button md-raised-button>Save</button>
   </div>
 </div>

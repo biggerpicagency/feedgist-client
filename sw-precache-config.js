@@ -24,5 +24,8 @@ module.exports = {
   }, {
     urlPattern: /fonts\.gstatic\.com/,
     handler: 'networkFirst'
+  }, {
+    urlPattern: /cdn\.onesignal\.com/,
+    handler: 'networkFirst'
   }]
 };

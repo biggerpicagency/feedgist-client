@@ -1,17 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
+import { MdSnackBar } from '@angular/material';
+
+import { ApiService } from '../shared/api.service';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, OnDestroy {
+  private oneSignalDetector: Subscription;
+  private userDeviceSettings: Subscription;
+  private localStorageWebPushPlayerKey = 'webpush_player_id';
+
+  oneSignalPlayerId: any = null;
+  ready = false;
   checkedColor = 'accent';
-  checked = false;
-  disabled = false;
-  reminder_type = 1;
-  reminder_first_at = '11:00';
-  reminder_second_at = '19:00';
+  webPushSubscribed = false;
+  isWebPushSupported = null;
+  settings: any = {
+    reminder_type: 1,
+    reminder_first_at: '11:00',
+    reminder_second_at: '19:00'
+  };
   hours = [
     '00:00',
     '01:00',
@@ -33,16 +46,165 @@ export class SettingsComponent implements OnInit {
     '17:00',
     '18:00',
     '19:00',
-    '19:00',
     '20:00',
     '21:00',
     '22:00',
     '23:00'
   ];
 
-  constructor() { }
+  constructor(private api: ApiService, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
+    this.ready = true;
+    this.isWebPushSupported = false;
+
+    this.oneSignalDetector = IntervalObservable.create(100).subscribe(() => {
+      let OneSignal = window['OneSignal'] || null;
+
+      if (typeof OneSignal !== 'undefined' && typeof OneSignal === 'function') {
+        this.ready = true;
+        this.isWebPushSupported = OneSignal.isPushNotificationsSupported();
+
+        OneSignal.isPushNotificationsEnabled().then((isSubscribed) => {
+          this.getUserDeviceSettings(isSubscribed);
+        });
+
+        this.oneSignalDetector.unsubscribe();
+      }
+    });
+  }
+
+  getUserDeviceSettings(isSubscribed) {
+    let OneSignal = window['OneSignal'] || null;
+    let playerId = this.getWebPushPlayerId();
+
+    //OneSignal.push(() => {
+      //OneSignal.getUserId((playerId) => {
+        if (playerId) {
+          this.userDeviceSettings = this.api.get('settings/' + playerId).subscribe((res) => {
+            this.webPushSubscribed = true;
+            this.settings = {
+              player_id: res.player_id,
+              reminder_type: res.reminder_type,
+              reminder_first_at: res.reminder_first_at,
+              reminder_second_at: res.reminder_second_at,
+            };
+          });
+        } 
+      //});
+    //});
+  }
+
+  ngOnDestroy() {
+    this.oneSignalDetector.unsubscribe();
+  }
+
+  changeWebPushSubscription() {
+    let OneSignal = window['OneSignal'] || null;
+
+    if (!OneSignal) {
+      return;
+    }
+
+    if (this.webPushSubscribed) {
+      OneSignal.push(function() {
+        OneSignal.registerForPushNotifications();
+      });
+      OneSignal.push(function() {
+        OneSignal.registerForPushNotifications({
+          modalPrompt: true
+        });
+      });
+
+      OneSignal.push(() => {
+        OneSignal.getUserId().then((userId) => {
+          this.setWebPushPlayerId(userId);
+        });
+      });
+
+      this.save();
+    } else {
+      this.removeUserDeviceFromWebPush();
+    }
+
+    OneSignal.push(["setSubscription", this.webPushSubscribed]);
+
+    //this.api.put('settings', {notify_me: true}).subscribe();
+
+    OneSignal.on('notificationPermissionChange', ((permissionChange) => {
+      var currentPermission = permissionChange.to;
+      
+      if (currentPermission === 'denied') {
+        this.isWebPushSupported = false;
+        this.removeUserDeviceFromWebPush();
+      } else {
+        this.save();
+      }
+
+      OneSignal.push(["setSubscription", this.webPushSubscribed]);
+    }));
+  }
+
+  save() {
+    let OneSignal = window['OneSignal'] || null;
+
+    if (this.oneSignalPlayerId) {
+      this.callApiForSave();
+    } else {
+      OneSignal.push(() => {
+        OneSignal.getUserId().then((userId) => {
+          if (userId) {
+            this.setWebPushPlayerId(userId);
+            this.callApiForSave();
+          }
+        });
+      });
+    }
+  }
+
+  callApiForSave() {
+    let data = this.settings;
+    data.player_id = this.oneSignalPlayerId;
+
+    this.api.put('settings', data).subscribe((res) => {
+      this.snackBar.open(res.message, null, {
+        duration: 1000
+      });
+    });
+  }
+
+  removeUserDeviceFromWebPush() {
+    if (!this.getWebPushPlayerId()) {
+      return;
+    }
+
+    if (this.userDeviceSettings) {
+      this.userDeviceSettings.unsubscribe();
+    }
+    
+    this.api.delete('settings/' + this.oneSignalPlayerId).subscribe((res) => {
+      this.forgetWebPushPlayerId();
+      this.snackBar.open(res.message, null, {
+        duration: 1000
+      });
+    });
+  }
+
+  private getWebPushPlayerId() {
+    return localStorage.getItem(this.localStorageWebPushPlayerKey) || null;
+  }
+
+  private setWebPushPlayerId(id) {
+    if (!id) {
+      return;
+    }
+
+    localStorage.setItem(this.localStorageWebPushPlayerKey, id);
+    this.oneSignalPlayerId = id;
+  }
+
+  private forgetWebPushPlayerId() {
+    localStorage.removeItem(this.localStorageWebPushPlayerKey);
   }
 
 }
