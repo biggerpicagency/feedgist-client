@@ -17,8 +17,7 @@ export class ApiService {
   get(url) {
     return this.http.get(environment.apiEndpoint + url)
                     .map((res) => {
-                        console.log(res.status);
-                        return this.apiResponse(res);
+                      return this.apiResponse(res);
                     })
                     .catch((error:any) => {
                       return Observable.throw(error.json().error || 'Server error')
@@ -28,8 +27,7 @@ export class ApiService {
   put(url, data) {
     return this.http.put(environment.apiEndpoint + url, JSON.stringify(data))
                     .map((res) => {
-                        console.log(res.status);
-                        return this.apiResponse(res);
+                      return this.apiResponse(res);
                     })
                     .catch((error:any) => {
                       return Observable.throw(error.json().error || 'Server error')
@@ -39,8 +37,7 @@ export class ApiService {
   post(url, data) {
     return this.http.post(environment.apiEndpoint + url, JSON.stringify(data))
                     .map((res) => {
-                        console.log(res.status);
-                        return this.apiResponse(res);
+                      return this.apiResponse(res);
                     })
                     .catch((error:any) => {
                       return Observable.throw(error.json().error || 'Server error')
@@ -50,8 +47,7 @@ export class ApiService {
   delete(url) {
     return this.http.delete(environment.apiEndpoint + url)
                     .map((res) => {
-                        console.log(res.status);
-                        return this.apiResponse(res);
+                      return this.apiResponse(res);
                     })
                     .catch((error:any) => {
                       return Observable.throw(error.json().error || 'Server error')

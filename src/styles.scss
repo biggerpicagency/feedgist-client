@@ -20,9 +20,15 @@ button {
     font-smoothing: antialiased;
 }
 
+html, 
 body {
+    height: 100%;
+}
+
+body {
+    position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100%;
     background-image: -ms-radial-gradient(center, ellipse farthest-corner, #3BE4DF 15%, #3B5999 100%);
     background-image: -moz-radial-gradient(center, ellipse farthest-corner, #3BE4DF 15%, #3B5999 100%);
     background-image: -o-radial-gradient(center, ellipse farthest-corner, #3BE4DF 15%, #3B5999 100%);
@@ -37,6 +43,10 @@ body {
 %containerCommonStyles {
     position: relative;
     margin: 0 auto;
+}
+
+.app-root {
+    color: #fff;
 }
 
 .container {
@@ -54,6 +64,10 @@ body {
 
 a {
     text-decoration: none;
+}
+
+.text-center {
+    text-align: center;
 }
 
 .clearfix:after { 
@@ -75,7 +89,9 @@ snack-bar-container {
     height: auto !important;
     color: #fff;
     box-sizing: border-box !important;
-    padding: 14px 10px !important
+    padding: 14px 10px !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 img.ng2-lazyloaded {
@@ -96,4 +112,12 @@ img.ng2-lazyloaded {
         top: 40px;
         bottom: 40px;
     }
+}
+
+.vertical-middle {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
 }

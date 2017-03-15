@@ -14,16 +14,16 @@ module.exports = {
     handler: 'networkFirst'
   }, {
     urlPattern: /external\.xx\.fbcdn\.net/,
-    handler: 'networkFirst'
+    handler: 'fastest'
   }, {
     urlPattern: /scontent\.xx\.fbcdn\.net/,
-    handler: 'networkFirst'
+    handler: 'fastest'
   }, {
     urlPattern: /fonts\.googleapis\.com/,
-    handler: 'networkFirst'
+    handler: 'fastest'
   }, {
     urlPattern: /fonts\.gstatic\.com/,
-    handler: 'networkFirst'
+    handler: 'cacheFirst'
   }, {
     urlPattern: /cdn\.onesignal\.com/,
     handler: 'networkFirst'

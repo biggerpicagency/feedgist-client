@@ -78,21 +78,17 @@ export class SettingsComponent implements OnInit, OnDestroy {
     let OneSignal = window['OneSignal'] || null;
     let playerId = this.getWebPushPlayerId();
 
-    //OneSignal.push(() => {
-      //OneSignal.getUserId((playerId) => {
-        if (playerId) {
-          this.userDeviceSettings = this.api.get('settings/' + playerId).subscribe((res) => {
-            this.webPushSubscribed = true;
-            this.settings = {
-              player_id: res.player_id,
-              reminder_type: res.reminder_type,
-              reminder_first_at: res.reminder_first_at,
-              reminder_second_at: res.reminder_second_at,
-            };
-          });
-        } 
-      //});
-    //});
+    if (playerId) {
+      this.userDeviceSettings = this.api.get('settings/' + playerId).subscribe((res) => {
+        this.webPushSubscribed = true;
+        this.settings = {
+          player_id: res.player_id,
+          reminder_type: res.reminder_type,
+          reminder_first_at: res.reminder_first_at,
+          reminder_second_at: res.reminder_second_at,
+        };
+      });
+    }
   }
 
   ngOnDestroy() {
@@ -107,22 +103,20 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     if (this.webPushSubscribed) {
-      OneSignal.push(function() {
-        OneSignal.registerForPushNotifications();
-      });
-      OneSignal.push(function() {
-        OneSignal.registerForPushNotifications({
-          modalPrompt: true
+      if (!this.getWebPushPlayerId()) {
+        OneSignal.push(function() {
+          OneSignal.registerForPushNotifications({
+            modalPrompt: true
+          });
         });
-      });
 
-      OneSignal.push(() => {
-        OneSignal.getUserId().then((userId) => {
-          this.setWebPushPlayerId(userId);
+        OneSignal.push(() => {
+          OneSignal.getUserId().then((userId) => {
+            this.setWebPushPlayerId(userId);
+          });
         });
-      });
+      }
 
-      this.save();
     } else {
       this.removeUserDeviceFromWebPush();
     }
@@ -137,8 +131,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
       if (currentPermission === 'denied') {
         this.isWebPushSupported = false;
         this.removeUserDeviceFromWebPush();
-      } else {
-        this.save();
       }
 
       OneSignal.push(["setSubscription", this.webPushSubscribed]);

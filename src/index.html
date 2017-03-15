@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Feed Gist</title>
+  <title>FeedGist</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,6 @@
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
   <script>
     var OneSignal = window.OneSignal || [];
-    var OneSignalLib = OneSignal;
     OneSignal.push(["init", {
       allowLocalhostAsSecureOrigin: true,
       appId: "46054487-2b88-4f9f-bc25-8b479ac8dcc4",
@@ -23,31 +22,13 @@
         enable: false
       }
     }]);
-
-    OneSignal.push(function() {
-      OneSignal.showHttpPermissionRequest();
-      OneSignal.getUserId(function(userId) {
-        console.log("OneSignal User ID:", userId);
-        // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
-      });
-    });
   </script>
-
-  <!--
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }).catch(function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
-  }
-</script>-->
-
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div class="app-root vertical-middle text-center">
+      <img src="/assets/fg_logo-white-icon.svg" width="100" alt="FeedGist">
+    </div>
+  </app-root>
 </body>
 </html>
