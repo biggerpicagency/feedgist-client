@@ -38,17 +38,6 @@
   
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
   <script>
-    var OneSignal = window.OneSignal || [];
-    OneSignal.push(["init", {
-      allowLocalhostAsSecureOrigin: true,
-      appId: "46054487-2b88-4f9f-bc25-8b479ac8dcc4",
-      autoRegister: true,
-      notifyButton: {
-        enable: false
-      }
-    }]);
-  </script>
-  <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
         // Registration was successful
@@ -58,6 +47,17 @@
         console.log('ServiceWorker registration failed: ', err);
       });
     }
+  </script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+      allowLocalhostAsSecureOrigin: true,
+      appId: "46054487-2b88-4f9f-bc25-8b479ac8dcc4",
+      autoRegister: true,
+      notifyButton: {
+        enable: false
+      }
+    }]);
   </script>
 </head>
 <body>
