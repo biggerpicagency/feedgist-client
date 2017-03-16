@@ -27,4 +27,8 @@
     fill: #fff;
     width: 35px;
   }
+
+  &[disabled] {
+    opacity: 0.5;
+  }
 }

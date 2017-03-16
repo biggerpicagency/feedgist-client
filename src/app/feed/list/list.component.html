@@ -35,9 +35,8 @@
             <button 
               md-button 
               [ngClass]="{'md-button-active': post.likes.summary.has_liked}"
-              (click)="like(post)">
-              <i class="material-icons">thumb_up</i> 
-              <b>LIKE</b> ({{post.likes.summary.total_count}})
+              disabled>
+              <b>{{post.likes.summary.total_count}} LIKE(S)</b>
             </button>
 
             <!--<button md-button><i class="material-icons">share</i> <b>SHARE</b></button>-->

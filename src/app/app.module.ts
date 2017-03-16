@@ -12,8 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-//import { FeedModule } from './feed/feed.module';
-//import { SettingsModule } from './settings/settings.module';
 import { MainComponent } from './main.component';
 import { environment } from '../environments/environment';
 import { AboutComponent } from './about/about.component';
@@ -26,19 +24,19 @@ export class MyAuthConfig extends CustomConfig {
         url: environment.apiEndpoint + 'auth/facebookCallback',
         redirectUri: window.location.origin + '/auth/facebook',
         requiredUrlParams: ['display', 'scope'],
-        scope: ['email', 'user_likes', 'publish_pages'],
+        scope: ['email', 'user_likes'],
         scopeDelimiter: ',',
       }
     };
 }
 
-export function test(backend: XHRBackend, options: RequestOptions) {
+export function httpFactory(backend: XHRBackend, options: RequestOptions) {
   return new HttpService(backend, options);
 }
 
 export let httpProvider = {
   provide: HttpService,
-  useFactory: test,
+  useFactory: httpFactory,
   deps: [XHRBackend, RequestOptions]
 };
 
@@ -56,8 +54,6 @@ export let httpProvider = {
     Ng2UiAuthModule.forRoot(MyAuthConfig),
     AppRoutingModule,
     AuthModule,
-    //FeedModule,
-    //SettingsModule,
     SharedModule
   ],
   providers: [httpProvider],

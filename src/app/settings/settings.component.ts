@@ -110,7 +110,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       if (!this.getWebPushPlayerId()) {
         OneSignal.push(function() {
           OneSignal.registerForPushNotifications({
-            modalPrompt: true
+            modalPrompt: false
           });
         });
 
@@ -157,7 +157,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   callApiForSave() {
-    let data = this.settings;
+    let data = Object.assign({}, this.settings);
     data.player_id = this.oneSignalPlayerId;
     data.reminder_first_at = this.recalculateHourWithUserTimezone(data.reminder_first_at, true);
     data.reminder_second_at = this.recalculateHourWithUserTimezone(data.reminder_second_at, true);
@@ -196,7 +196,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       onlyHour = parseInt(onlyHour);
     }
 
-    return toUtc ? onlyHour+timezoneOffset : onlyHour-timezoneOffset;
+    return (toUtc ? onlyHour+timezoneOffset : onlyHour-timezoneOffset) + ':00';
   }
 
   private getWebPushPlayerId() {

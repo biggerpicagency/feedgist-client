@@ -5,7 +5,7 @@
   </p>
 </div>
 
-<div class="container">
+<div class="container-small">
   <md-card>
     <md-card-content>
       <h2 class="headline headline--2">Send us a message</h2>
@@ -15,7 +15,7 @@
 
       <form (ngSubmit)="sendMessage()">
         <md-input-container class="md-input-container md-input-container--full-width">
-          <textarea mdInput [(ngModel)]="form.message" name="message" placeholder="Message" [disabled]="loading"></textarea>
+          <textarea mdInput [(ngModel)]="form.message" name="message" placeholder="Message" [disabled]="loading" required></textarea>
         </md-input-container>
 
         <button md-raised-button type="submit" [disabled]="loading">Send</button>

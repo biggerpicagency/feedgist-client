@@ -105,7 +105,7 @@ snack-bar-container {
 }
 
 .mat-card {
-    color: #444 !important;
+    color: #555 !important;
 }
 
 .mat-radio-label {
@@ -131,6 +131,10 @@ snack-bar-container {
 
 .md-input-container--full-width {
     width: 100%;
+}
+
+.mat-progress-circle {
+    width: auto !important;
 }
 
 .md-button-active {

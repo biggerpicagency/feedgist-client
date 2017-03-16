@@ -8,19 +8,24 @@ import { AuthService } from 'ng2-ui-auth';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  loading = false;
 
   constructor(private auth: AuthService, private router: Router) { }
 
   loginWithFacebook() {
-      this.auth.authenticate('facebook')
-          .subscribe((res) => {
-            let response = res.json();
-            if (response.pagesCounter === 0) {
-              this.router.navigateByUrl('/feed/settings');
-            } else {
-              this.router.navigateByUrl('/feed');
-            }
-          });
+    this.loading = true;
+
+    this.auth.authenticate('facebook')
+        .subscribe((res) => {
+          let response = res.json();
+          this.loading = false;
+
+          if (response.pagesCounter === 0) {
+            this.router.navigateByUrl('/feed/settings');
+          } else {
+            this.router.navigateByUrl('/feed');
+          }
+        });
   }
 
 }
