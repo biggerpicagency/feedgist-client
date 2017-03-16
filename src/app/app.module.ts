@@ -26,7 +26,7 @@ export class MyAuthConfig extends CustomConfig {
         url: environment.apiEndpoint + 'auth/facebookCallback',
         redirectUri: window.location.origin + '/auth/facebook',
         requiredUrlParams: ['display', 'scope'],
-        scope: ['email', 'user_likes'],
+        scope: ['email', 'user_likes', 'publish_pages'],
         scopeDelimiter: ',',
       }
     };

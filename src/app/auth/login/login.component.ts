@@ -14,7 +14,12 @@ export class LoginComponent {
   loginWithFacebook() {
       this.auth.authenticate('facebook')
           .subscribe((res) => {
-            this.router.navigateByUrl('/feed');
+            let response = res.json();
+            if (response.pagesCounter === 0) {
+              this.router.navigateByUrl('/feed/settings');
+            } else {
+              this.router.navigateByUrl('/feed');
+            }
           });
   }
 
