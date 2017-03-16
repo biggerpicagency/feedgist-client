@@ -1,7 +1,7 @@
 {
   "name": "FeedGist",
   "short_name": "FeedGist",
-  "start_url": "/",
+  "start_url": "/index.html",
   "display": "standalone",
   "gcm_sender_id": "482941778795",
   "icons": [
@@ -18,6 +18,5 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#3B5999",
-  "orientation": "portrait",
-  "start_url": "/"
+  "orientation": "portrait"
 }
