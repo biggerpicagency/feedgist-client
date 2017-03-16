@@ -48,3 +48,7 @@ RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^feedgist.io [NC,OR]
 RewriteCond %{HTTP_HOST} ^www.feedgist.io [NC]
 RewriteRule ^(.*)$ https://www.feedgist.io/$1 [L,R=301]
+
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^feedgist.io [NC]
+RewriteRule ^(.*)$ https://www.feedgist.io/$1 [L,R=301]
