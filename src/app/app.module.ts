@@ -16,13 +16,14 @@ import { FeedModule } from './feed/feed.module';
 import { SettingsModule } from './settings/settings.module';
 import { MainComponent } from './main.component';
 import { environment } from '../environments/environment';
+import { AboutComponent } from './about/about.component';
 
 export class MyAuthConfig extends CustomConfig {
     defaultHeaders = {'Content-Type': 'application/json'};
     providers = {
       facebook: {
         clientId: '1148407601949396', 
-        url: 'http://api.feed-gist.dev/api/auth/facebookCallback',
+        url: environment.apiEndpoint + 'auth/facebookCallback',
         redirectUri: window.location.origin + '/auth/facebook',
         requiredUrlParams: ['display', 'scope'],
         scope: ['email', 'user_likes'],
@@ -44,7 +45,8 @@ export let httpProvider = {
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

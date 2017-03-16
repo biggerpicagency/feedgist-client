@@ -74,6 +74,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngOnDestroy() {
+    this.oneSignalDetector.unsubscribe();
+
+    if (this.userDeviceSettings) {
+      this.userDeviceSettings.unsubscribe();
+    }
+  }
+  
   getUserDeviceSettings(isSubscribed) {
     let OneSignal = window['OneSignal'] || null;
     let playerId = this.getWebPushPlayerId();
@@ -88,14 +96,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
           reminder_second_at: res.reminder_second_at,
         };
       });
-    }
-  }
-
-  ngOnDestroy() {
-    this.oneSignalDetector.unsubscribe();
-
-    if (this.userDeviceSettings) {
-      this.userDeviceSettings.unsubscribe();
     }
   }
 
@@ -126,8 +126,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     OneSignal.push(["setSubscription", this.webPushSubscribed]);
-
-    //this.api.put('settings', {notify_me: true}).subscribe();
 
     OneSignal.on('notificationPermissionChange', ((permissionChange) => {
       var currentPermission = permissionChange.to;

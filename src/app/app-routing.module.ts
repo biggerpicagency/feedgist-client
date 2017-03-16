@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './shared/auth-guard';
 import { MainComponent } from './main.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'settings',
         loadChildren: './settings/settings.module#SettingsModule'
+      },
+      {
+        path: 'about',
+        component: AboutComponent
       }
     ]
   }
