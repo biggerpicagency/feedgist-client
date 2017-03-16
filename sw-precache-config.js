@@ -12,6 +12,9 @@ module.exports = {
   runtimeCaching: [{
     urlPattern: /api\.feed-gist\.dev/,
     handler: 'networkFirst'
+  },{
+    urlPattern: /api\.feedgist\.io/,
+    handler: 'networkFirst'
   }, {
     urlPattern: /external\.xx\.fbcdn\.net/,
     handler: 'fastest'
