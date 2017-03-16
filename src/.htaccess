@@ -46,3 +46,6 @@ RewriteRule ^(.*)$ /index.html?path=$1 [NC,L,QSA]
 # force WWW if user on non-www
 RewriteCond %{http_HOST} ^feedgist.io [NC]
 RewriteRule ^(.*)$ https://www.feedgist.io/$1 [L,R=301]
+
+RewriteCond %{http_HOST} ^www.feedgist.io [NC]
+RewriteRule ^(.*)$ https://www.feedgist.io/$1 [L,R=301]
