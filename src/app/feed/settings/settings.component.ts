@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
+import { Subscription } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 
 import { ApiService } from '../../shared/api.service';
@@ -13,6 +14,7 @@ import { SelectedPagesComponent } from '../selected-pages/selected-pages.compone
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
+  private settingsObservable: Subscription;
   searchTermValue: String = '';
   results: Object;
   searchTerm$ = new Subject<string>();
@@ -39,7 +41,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   closeSelectedPagesBar() {
-    this.selectedPagesBar.dismiss();
+    if (this.selectedPagesBar) {
+      this.selectedPagesBar.dismiss();
+    }
   }
 
   selectPage(page) {
@@ -60,22 +64,22 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadingShow = true;
-    this.api.get('feed/settings')
-            .subscribe((res) => {
-              this.searchService.pages = res.all;
-              this.categories = res.categories;
-              this.selected.pagesIds = res.selected.ids;
-              this.selected.init(this.categories, this.selected.pagesIds, res.selected.pages);
+    this.settingsObservable = this.api.get('feed/settings').subscribe((res) => {
+      this.searchService.pages = res.all;
+      this.categories = res.categories;
+      this.selected.pagesIds = res.selected.ids;
+      this.selected.init(this.categories, this.selected.pagesIds, res.selected.pages);
 
-              if (res.selected.pages.length > 0) {
-                this.openSelectedPagesBar();
-              }
-              
-              this.loadingShow = false;
-            });
+      if (res.selected.pages.length > 0) {
+        this.openSelectedPagesBar();
+      }
+      
+      this.loadingShow = false;
+    });
   }
 
   ngOnDestroy() {
     this.closeSelectedPagesBar();
+    this.settingsObservable.unsubscribe();
   }
 }

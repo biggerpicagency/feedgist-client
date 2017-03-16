@@ -93,6 +93,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.oneSignalDetector.unsubscribe();
+
+    if (this.userDeviceSettings) {
+      this.userDeviceSettings.unsubscribe();
+    }
   }
 
   changeWebPushSubscription() {
