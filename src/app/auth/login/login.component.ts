@@ -20,6 +20,8 @@ export class LoginComponent {
           let response = res.json();
           this.loading = false;
 
+          alert(123);
+
           if (response.pagesCounter === 0) {
             this.router.navigateByUrl('/feed/settings');
           } else {
