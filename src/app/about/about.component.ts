@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   private formSubmissionSubsription: Subscription;
   loading: Boolean = false;
 
-  form: Object = {
+  form = {
     message: ''
   };
   constructor(private api: ApiService, public snackBar: MdSnackBar) { }
@@ -30,6 +30,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   sendMessage() {
     this.loading = true;
     this.formSubmissionSubsription = this.api.post('sendMessage', this.form).subscribe((res) => {
+      this.form.message = '';
       this.loading = false;
       this.snackBar.open(res.message, null, {
         duration: 1000

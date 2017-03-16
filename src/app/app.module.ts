@@ -12,8 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-import { FeedModule } from './feed/feed.module';
-import { SettingsModule } from './settings/settings.module';
+//import { FeedModule } from './feed/feed.module';
+//import { SettingsModule } from './settings/settings.module';
 import { MainComponent } from './main.component';
 import { environment } from '../environments/environment';
 import { AboutComponent } from './about/about.component';
@@ -56,8 +56,8 @@ export let httpProvider = {
     Ng2UiAuthModule.forRoot(MyAuthConfig),
     AppRoutingModule,
     AuthModule,
-    FeedModule,
-    SettingsModule,
+    //FeedModule,
+    //SettingsModule,
     SharedModule
   ],
   providers: [httpProvider],

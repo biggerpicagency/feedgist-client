@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'http://api.feed-gist.dev/api/'
+  apiEndpoint: 'https://api.feedgist.io/api/'
 };
