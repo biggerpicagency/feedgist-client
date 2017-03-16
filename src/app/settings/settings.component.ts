@@ -192,6 +192,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     if (onlyHour.substring(0, 1) === '0') {
       onlyHour = parseInt(onlyHour.substring(1, 2));
+    } else {
+      onlyHour = parseInt(onlyHour);
     }
 
     return toUtc ? onlyHour+timezoneOffset : onlyHour-timezoneOffset;
