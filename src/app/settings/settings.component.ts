@@ -92,8 +92,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.settings = {
           player_id: res.player_id,
           reminder_type: res.reminder_type,
-          reminder_first_at: res.reminder_first_at,
-          reminder_second_at: res.reminder_second_at,
+          reminder_first_at: this.recalculateHourWithUserTimezone(res.reminder_first_at, false),
+          reminder_second_at: this.recalculateHourWithUserTimezone(res.reminder_second_at, false),
         };
       });
     }
@@ -159,6 +159,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   callApiForSave() {
     let data = this.settings;
     data.player_id = this.oneSignalPlayerId;
+    data.reminder_first_at = this.recalculateHourWithUserTimezone(data.reminder_first_at, true);
+    data.reminder_second_at = this.recalculateHourWithUserTimezone(data.reminder_second_at, true);
 
     this.api.put('settings', data).subscribe((res) => {
       this.snackBar.open(res.message, null, {
@@ -182,6 +184,17 @@ export class SettingsComponent implements OnInit, OnDestroy {
         duration: 1000
       });
     });
+  }
+
+  private recalculateHourWithUserTimezone(hour, toUtc) {
+    let onlyHour = hour.substring(0, 2);
+    let timezoneOffset = (new Date().getTimezoneOffset())/60;
+
+    if (onlyHour.substring(0, 1) === '0') {
+      onlyHour = parseInt(onlyHour.substring(1, 2));
+    }
+
+    return toUtc ? onlyHour+timezoneOffset : onlyHour-timezoneOffset;
   }
 
   private getWebPushPlayerId() {
