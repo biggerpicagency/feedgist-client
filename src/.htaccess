@@ -44,8 +44,8 @@ RewriteCond %{REQUEST_URI} !\.(?:css|js|map|jpe?g|gif|png)$ [NC]
 RewriteRule ^(.*)$ /index.html?path=$1 [NC,L,QSA]
 
 # force WWW if user on non-www
-RewriteCond %{http_HOST} ^feedgist.io [NC]
-RewriteRule ^(.*)$ https://www.feedgist.io/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^www.feedgist.io [NC]
+RewriteRule ^(.*)$ https://www.feedgist.io/$1 [R=301,L]
 
-RewriteCond %{http_HOST} ^www.feedgist.io [NC]
-RewriteRule ^(.*)$ https://www.feedgist.io/$1 [L,R=301]
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
