@@ -37,12 +37,7 @@
   <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-
-  <!--
-  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>-->
-
-
-  <!--
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
   <script>
     var OneSignal = window.OneSignal || [];
     OneSignal.push(["init", {
@@ -54,7 +49,6 @@
       }
     }]);
   </script>
-  -->
 </head>
 <body>
   <app-root>
@@ -74,7 +68,7 @@
 
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+      navigator.serviceWorker.register('/OneSignalSDKWorker').then(function(registration) {
         // Registration was successful
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
       }).catch(function(err) {
