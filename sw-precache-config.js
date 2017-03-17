@@ -1,8 +1,10 @@
 module.exports = {
   staticFileGlobs: [
+    'dist/**.html',
     'dist/**.js',
     'dist/**.css',
-    'dist/assets/*'
+    'dist/assets/*',
+    'dist/*'
   ],
   root: 'dist',
   stripPrefix: 'dist/',
@@ -14,10 +16,10 @@ module.exports = {
     urlPattern: /api\.feedgist\.io/,
     handler: 'networkFirst'
   }, {
-    urlPattern: /fbcdn\.net/,
+    urlPattern: /.fbcdn\.net/,
     handler: 'fastest'
   }, {
-    urlPattern: /akamaihd.net/,
+    urlPattern: /akamaihd\.net/
     handler: 'fastest'
   }, {
     urlPattern: /fonts\.googleapis\.com/,
