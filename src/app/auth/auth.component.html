@@ -1,8 +1,12 @@
 <div class="auth">
-    <div class="auth__container">
-        <div class="container-small">
-            <img class="auth__logo" src="/assets/fg_logo-white-stacked.svg" alt="Feed Gist">
-            <router-outlet></router-outlet>
-        </div>
+  <div class="auth__container">
+    <div class="container-small">
+      <img class="auth__logo" src="/assets/fg_logo-white-stacked.svg" alt="Feed Gist">
+      <router-outlet></router-outlet>
     </div>
+  </div>
+
+  <div class="auth__footer">
+    <a [routerLink]="['/privacy-policy']" href>Privacy Policy</a>
+  </div>
 </div>

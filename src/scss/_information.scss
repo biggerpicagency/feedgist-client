@@ -1,11 +1,16 @@
 .information {
-    margin: 0.5em 0 1.5em 0;
-    color: #666;
+  margin: 0.5em 0 1.5em 0;
+  color: #666;
 
-    p {
-        margin: 0;
+  &--white {
+    padding: 1em;
+    background-color: rgba(#fff, 0.9);
+  }
 
-        color: #888;
-        font-size: 0.9em;
-    }
+  p,
+  li {
+    margin: 0;
+    color: #888;
+    font-size: 0.9em;
+  }
 }

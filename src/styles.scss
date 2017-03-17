@@ -71,6 +71,7 @@ body {
 
 a {
     text-decoration: none;
+    color: #3ad2d6;
 }
 
 .text-center {
@@ -87,6 +88,7 @@ a {
 
 @import 'scss/_headline';
 @import 'scss/_information';
+@import 'scss/_content';
 @import 'scss/_page';
 @import 'scss/_category';
 @import 'scss/_loading';

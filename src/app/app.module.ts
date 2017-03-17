@@ -17,6 +17,7 @@ import { SettingsModule } from './settings/settings.module';
 import { MainComponent } from './main.component';
 import { environment } from '../environments/environment';
 import { AboutComponent } from './about/about.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 export class MyAuthConfig extends CustomConfig {
     defaultHeaders = {'Content-Type': 'application/json'};
@@ -46,7 +47,8 @@ export let httpProvider = {
   declarations: [
     AppComponent,
     MainComponent,
-    AboutComponent
+    AboutComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
