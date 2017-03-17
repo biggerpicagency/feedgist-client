@@ -1,4 +1,4 @@
-<FilesMatch "^(OneSignalSDKWorker.*|service-worker.*|OneSignalSDKUpdaterWorker.*)\.(js)$">
+<FilesMatch "\.(html|htm|xml|txt|xsl|ico|pdf|flv|jpg|jpeg|png|gif|swf|mp3|mp4)$">
   FileETag None
   <ifModule mod_headers.c>
      Header unset ETag
@@ -7,6 +7,16 @@
      Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
   </ifModule>
 </FilesMatch>
+
+#<FilesMatch "^(OneSignalSDKWorker.*|service-worker.*|OneSignalSDKUpdaterWorker.*)\.(js)$">
+#  FileETag None
+#  <ifModule mod_headers.c>
+#     Header unset ETag
+#     Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+#     Header set Pragma "no-cache"
+#     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+#  </ifModule>
+#</FilesMatch>
 
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} -s [OR]
