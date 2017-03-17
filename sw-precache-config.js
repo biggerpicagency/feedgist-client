@@ -2,8 +2,7 @@ module.exports = {
   staticFileGlobs: [
     'dist/**.js',
     'dist/**.css',
-    'dist/assets/*',
-    'dist/*'
+    'dist/assets/*'
   ],
   root: 'dist',
   stripPrefix: 'dist/',
@@ -19,7 +18,6 @@ module.exports = {
     handler: 'fastest'
   }, {
     urlPattern: /akamaihd.net/,
-    handler: 'fastest'
   }, {
     urlPattern: /fonts\.googleapis\.com/,
     handler: 'fastest'
