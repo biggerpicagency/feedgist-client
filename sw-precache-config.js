@@ -18,6 +18,7 @@ module.exports = {
     handler: 'fastest'
   }, {
     urlPattern: /akamaihd.net/,
+    handler: 'fastest'
   }, {
     urlPattern: /fonts\.googleapis\.com/,
     handler: 'fastest'
