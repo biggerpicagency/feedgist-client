@@ -15,10 +15,10 @@ module.exports = {
     urlPattern: /api\.feedgist\.io/,
     handler: 'networkFirst'
   }, {
-    urlPattern: /external\.xx\.fbcdn\.net/,
+    urlPattern: /fbcdn\.net/,
     handler: 'fastest'
   }, {
-    urlPattern: /scontent\.xx\.fbcdn\.net/,
+    urlPattern: /akamaihd.net/,
     handler: 'fastest'
   }, {
     urlPattern: /fonts\.googleapis\.com/,
