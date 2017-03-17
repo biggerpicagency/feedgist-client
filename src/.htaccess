@@ -1,8 +1,10 @@
 RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
 
-# not rewrite css, js and images
-RewriteCond %{REQUEST_URI} !\.(?:css|js|map|jpe?g|gif|png)$ [NC]
-RewriteRule ^(.*)$ /index.html?path=$1 [NC,L,QSA]
+RewriteRule ^(.*) /index.html [NC,L]
 
 # force WWW if user on non-www
 RewriteCond %{HTTPS} off
