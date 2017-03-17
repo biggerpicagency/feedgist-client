@@ -1,4 +1,4 @@
-<FilesMatch "^(OneSignalSDKWorker.*|service-worker.*|OneSignalSDKUpdaterWorker.*)\.(js)$">
+<FilesMatch "\.(html|htm|xml|txt|xsl|ico|pdf|flv|jpg|jpeg|png|gif|swf|mp3|mp4)$">
   FileETag None
   <ifModule mod_headers.c>
      Header unset ETag
