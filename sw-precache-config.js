@@ -19,7 +19,7 @@ module.exports = {
     urlPattern: /.fbcdn\.net/,
     handler: 'fastest'
   }, {
-    urlPattern: /akamaihd\.net/
+    urlPattern: /akamaihd\.net/,
     handler: 'fastest'
   }, {
     urlPattern: /fonts\.googleapis\.com/,
