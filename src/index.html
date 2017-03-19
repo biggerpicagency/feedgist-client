@@ -18,7 +18,7 @@
   <meta property="fb:app_id" content="1148407601949396">
 
   <meta name="robots" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <meta name="theme-color" content="#da532c">
 
@@ -70,7 +70,7 @@
     </noscript>
 
   <script>
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && location.hostname !== "localhost") {
     window.addEventListener('load', function() {
       navigator.serviceWorker.register('OneSignalSDKWorker.js').then(function(reg) {
         // updatefound is fired if service-worker.js changes.

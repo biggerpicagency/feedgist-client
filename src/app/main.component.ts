@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'main',
@@ -7,7 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-  title = 'app works!';
+  constructor(private router: Router) {}
 
-  constructor() {}
+  ngOnInit() {
+      this.router.events.subscribe((evt) => {
+          if (!(evt instanceof NavigationEnd)) {
+              return;
+          }
+          window.scrollTo(0, 0)
+      });
+  }
 }

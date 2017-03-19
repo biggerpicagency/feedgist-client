@@ -30,8 +30,10 @@ export class AboutComponent implements OnInit, OnDestroy {
   sendMessage() {
     this.loading = true;
     this.formSubmissionSubsription = this.api.post('sendMessage', this.form).subscribe((res) => {
+
       this.form.message = '';
       this.loading = false;
+
       this.snackBar.open(res.message, null, {
         duration: 1000
       });

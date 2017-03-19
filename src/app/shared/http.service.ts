@@ -29,7 +29,7 @@ export class HttpService extends Http {
       url.headers.set('Authorization', `Bearer ${token}`);
     }
 
-    return super.request(url, options).catch(this.catchAuthError(this));
+    return super.request(url, options);
   }
 
   private catchAuthError (self: HttpService) {
