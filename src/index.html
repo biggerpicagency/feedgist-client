@@ -27,7 +27,7 @@
   <meta name="msapplication-config" content="assets/browserconfig.xml">
 
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Raleway:300,600">
@@ -83,7 +83,7 @@
             switch (installingWorker.state) {
               case 'installed':
                 if (navigator.serviceWorker.controller) {
-                  window.location.reload(false);
+                  window.location.reload();
                 } else {
                   // At this point, everything has been precached.
                   // It's the perfect time to display a "Content is cached for offline use." message.
