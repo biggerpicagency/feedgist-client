@@ -83,9 +83,7 @@
             switch (installingWorker.state) {
               case 'installed':
                 if (navigator.serviceWorker.controller) {
-                  setTimeout(function() {
-                    location.reload(true);
-                  }, 3000);
+                  location.reload(true);
                 } else {
                   // At this point, everything has been precached.
                   // It's the perfect time to display a "Content is cached for offline use." message.
