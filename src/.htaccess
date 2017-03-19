@@ -1,3 +1,9 @@
+<FilesMatch "\.(js|html|txt|ico|jpg|jpeg|png|gif)$">
+  <ifModule mod_headers.c>
+     Header set Cache-Control "no-cache"
+  </ifModule>
+</FilesMatch>
+
 <FilesMatch "^(OneSignalSDKWorker.*|service-worker.*|OneSignalSDKUpdaterWorker.*)\.(js)$">
   FileETag None
   <ifModule mod_headers.c>
