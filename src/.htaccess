@@ -1,4 +1,4 @@
-<FilesMatch "\.(js|html|txt|ico|jpg|jpeg|png|gif)$">
+<FilesMatch "\.(js|html|txt|ico|jpg|jpeg|png|gif|svg)$">
   <ifModule mod_headers.c>
      Header set Cache-Control "no-cache"
   </ifModule>
