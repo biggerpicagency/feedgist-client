@@ -1,6 +1,10 @@
 <FilesMatch "\.(js|css|html|txt|ico|jpg|jpeg|png|gif|svg)$">
+  FileETag None
   <ifModule mod_headers.c>
-     Header set Cache-Control "no-cache"
+     Header unset ETag
+     Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+     Header set Pragma "no-cache"
+     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
   </ifModule>
 </FilesMatch>
 
@@ -15,19 +19,15 @@
 </FilesMatch>
 
 RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} -s [OR]
-RewriteCond %{REQUEST_FILENAME} -l [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^.*$ - [NC,L]
+#RewriteCond %{REQUEST_FILENAME} -s [OR]
+#RewriteCond %{REQUEST_FILENAME} -l [OR]
+#RewriteCond %{REQUEST_FILENAME} -d
+#RewriteRule ^.*$ - [NC,L]
 
-RewriteRule ^(.*) /index.html [NC,L]
+#RewriteRule ^(.*) /index.html [NC,L]
 
-# force WWW if user on non-www
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ http://www.feedgist.io/$1 [L,R=301]
+
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_HOST} ^feedgist.io [NC,OR]
-RewriteCond %{HTTP_HOST} ^www.feedgist.io [NC]
-RewriteRule ^(.*)$ https://www.feedgist.io/$1 [L,R=301]
-
-RewriteCond %{HTTPS} on
-RewriteCond %{HTTP_HOST} ^feedgist.io [NC]
 RewriteRule ^(.*)$ https://www.feedgist.io/$1 [L,R=301]
