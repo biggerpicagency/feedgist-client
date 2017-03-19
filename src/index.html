@@ -84,7 +84,7 @@
               case 'installed':
                 if (navigator.serviceWorker.controller) {
                   setTimeout(function() {
-                    window.location.href = "/";
+                    location.reload(true);
                   }, 3000);
                 } else {
                   // At this point, everything has been precached.
