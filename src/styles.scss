@@ -72,6 +72,10 @@ body {
 a {
     text-decoration: none;
     color: #3ad2d6;
+
+    &:hover {
+        color: #3b5999;
+    }
 }
 
 .text-center {
