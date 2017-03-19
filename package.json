@@ -9,7 +9,8 @@
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "protractor",
-    "precache": "sw-precache --verbose --config=sw-precache-config.js"
+    "precache": "sw-precache --verbose --config=sw-precache-config.js",
+    "sw-update": "node sw-update.js"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +29,7 @@
     "ng2-lazyload-image": "^2.4.0",
     "ng2-ui-auth": "^6.1.2",
     "normalize.css": "^5.0.0",
+    "replace": "^0.3.0",
     "rxjs": "^5.0.1",
     "sw-toolbox": "^3.6.0",
     "ts-helpers": "^1.1.1",
