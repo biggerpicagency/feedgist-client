@@ -11,6 +11,11 @@
   li {
     margin: 0;
     color: #888;
-    font-size: 0.9em;
+    font-size: 0.95em;
+
+    @media all and (min-width: 400px) {
+      font-size: 1.1em;
+      line-height: 1.3;
+    }
   }
 }

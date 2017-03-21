@@ -4,19 +4,23 @@
       <img class="navbar__logo" src="/assets/logo.svg" alt="FeedGist">
     </a>
 
-    <div class="navbar__icons navbar__icons--left navbar__icons--navy">
-      <button [routerLink]="['/about']" md-icon-button>
-        <md-icon>info</md-icon>
-      </button>
-    </div>
-
-    <div class="navbar__icons navbar__icons--right">
+    <div class="navbar__icons navbar__icons--left">
       <button [routerLink]="['/feed/settings']" md-icon-button>
         <md-icon>settings</md-icon>
       </button>
 
       <button [routerLink]="['/settings']" md-icon-button>
         <md-icon>notifications_on</md-icon>
+      </button>
+    </div>
+
+    <div class="navbar__icons navbar__icons--right navbar__icons--navy">
+      <button [routerLink]="['/about']" md-icon-button>
+        <md-icon>info</md-icon>
+      </button>
+
+      <button [routerLink]="['/auth/logout']" md-icon-button>
+        <md-icon>exit_to_app</md-icon>
       </button>
     </div>
   </div>
