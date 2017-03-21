@@ -9,6 +9,7 @@ import { AuthService } from 'ng2-ui-auth';
 })
 export class LoginComponent {
   loading = false;
+  isLocalStorageSupported = this.isLocalStorageNameSupported();
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -26,6 +27,21 @@ export class LoginComponent {
             this.router.navigateByUrl('/feed');
           }
         });
+  }
+
+  private isLocalStorageNameSupported() {
+    let testKey = 'test';
+    let storage = window.sessionStorage;
+
+    try {
+      storage.setItem(testKey, '1');
+      let testItem = storage.getItem(testKey);
+      storage.removeItem(testKey);
+
+      return testItem ? true : false;
+    } catch (error) {
+      return false;
+    }
   }
 
 }
