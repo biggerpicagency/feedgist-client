@@ -32,12 +32,4 @@ export class ListComponent implements OnInit, OnDestroy {
       this.loadingShow = false;
     });
   }
-
-  like(post) {
-    let liking = !post.likes.summary.has_liked;
-    this.api.post('feed/like/' + post.id, {liking: liking}).subscribe((res) => {
-      post.likes.summary.has_liked = liking;
-    });
-  }
-
 }

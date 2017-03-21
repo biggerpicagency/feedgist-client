@@ -21,11 +21,11 @@
           </a>
           <a 
             *ngIf="post.full_picture"
+            [lazyLoad]="post.full_picture" 
+            [offset]="lazyLoadingOffset"
             class="post__image" 
             href="{{post.link}}"
             rel="noopener"
-            [lazyLoad]="post.full_picture" 
-            [offset]="lazyLoadingOffset"
             target="_blank">
           </a>
           <md-card-content class="post__content">
@@ -38,8 +38,6 @@
               disabled>
               <b>{{post.likes.summary.total_count}} LIKE(S)</b>
             </button>
-
-            <!--<button md-button><i class="material-icons">share</i> <b>SHARE</b></button>-->
           </md-card-actions>
         </md-card>
       </div>

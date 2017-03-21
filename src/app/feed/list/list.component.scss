@@ -1,77 +1,76 @@
 .list {
-
-    &__item {
-        @media all and (max-width: 767px) {
-            margin-top: 1em;
-        }
-
-        @media all and (min-width: 768px) {
-            width: 48%;
-            float: left;
-            margin: 1%;
-        }
+  &__item {
+    @media all and (max-width: 767px) {
+      margin-top: 1em;
     }
+
+    @media all and (min-width: 768px) {
+      width: 48%;
+      float: left;
+      margin: 1%;
+    }
+  }
 }
 
 .post {
-    &__author {
-        color: inherit;
-        text-decoration: none;
+  &__author {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+
+    background-position: center center;
+    background-size: cover;
+
+    transition: opacity 1s;
+    opacity: 0;
+
+    &.ng2-lazyloaded {
+      opacity: 1;
     }
 
-    &__image {
-        display: block;
-        width: 100%;
-        margin-bottom: 1em;
-
-        background-position: center center;
-        background-size: cover;
-
-        transition: opacity 1s;
-        opacity: 0;
-
-        &.ng2-lazyloaded {
-            opacity: 1;
-        }
-
-        &:hover {
-            opacity: 0.8;
-        }
-
-        @media all and (max-width: 600px) {
-            margin-top: 1em;
-        }
-
-        @media all and (max-width: 899px) {
-            height: 150px;
-        }
-
-        @media all and (min-width: 900px) {
-            height: 300px;
-        }
+    &:hover {
+      opacity: 0.8;
     }
 
-    &__content {
-        margin-top: 10px;
-        word-break: break-word;
+    @media all and (max-width: 600px) {
+      margin-top: 1em;
     }
 
-    &__publisher {
-        font-weight: 600;
+    @media all and (max-width: 899px) {
+      height: 150px;
     }
 
-    &__buttons {
-        .mat-button {
-            color: #777;
-        }
+    @media all and (min-width: 900px) {
+      height: 300px;
     }
+  }
+
+  &__content {
+    margin-top: 10px;
+    word-break: break-word;
+  }
+
+  &__publisher {
+    font-weight: 600;
+  }
+
+  &__buttons {
+    .mat-button {
+      color: #777;
+    }
+  }
 }
 
 :host /deep/ .post__content a {
-    color: #00b09d;
-    transition: all 0.2s ease;
+  color: #00b09d;
+  transition: all 0.2s ease;
 
-    &:hover {
-        color: #00766a;
-    }
+  &:hover {
+      color: #00766a;
+  }
 }

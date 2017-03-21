@@ -1,41 +1,41 @@
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 
-    background-color: #fff;
-    border-bottom: 1px solid #dedede;
+  background-color: #fff;
+  border-bottom: 1px solid #dedede;
 
-    text-align: center;
+  text-align: center;
 
-    &__logo {
-        height: 43px;
+  &__logo {
+    height: 43px;
+  }
+
+  &__icons {
+    position: absolute;
+    top: 2px;
+
+    color: #3ad2d6;
+
+    &--left {
+      left: 0;
     }
 
-    &__icons {
-        position: absolute;
-        top: 2px;
-
-        color: #3ad2d6;
-
-        &--left {
-            left: 0;
-        }
-
-        &--right {
-            right: 0;
-        }
-
-        &--navy {
-            color: #3b5999;
-        }
+    &--right {
+      right: 0;
     }
+
+    &--navy {
+      color: #3b5999;
+    }
+  }
 }
 
 .main {
-    min-height: 100vh;
-    background-color: #ededed;
-    padding-top: 48px;
+  min-height: 100vh;
+  background-color: #ededed;
+  padding-top: 48px;
 }

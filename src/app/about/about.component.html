@@ -15,7 +15,14 @@
 
       <form (ngSubmit)="sendMessage()">
         <md-input-container class="md-input-container md-input-container--full-width">
-          <textarea mdInput [(ngModel)]="form.message" name="message" placeholder="Message" [disabled]="loading" required></textarea>
+          <textarea 
+            mdInput 
+            [(ngModel)]="form.message" 
+            [disabled]="loading"
+            name="message" 
+            placeholder="Message" 
+            required>
+          </textarea>
         </md-input-container>
 
         <button md-raised-button type="submit" [disabled]="loading">Send</button>

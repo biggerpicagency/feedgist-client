@@ -5,6 +5,4 @@ import { Component, Inject } from '@angular/core';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent {
-  title = 'app works!';
-}
+export class AuthComponent {}

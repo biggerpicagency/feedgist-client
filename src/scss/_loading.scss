@@ -1,17 +1,16 @@
 .loading {
-    width: 100%;
-    padding: 0 1em;
-    text-align: center;
+  width: 100%;
+  padding: 0 1em;
+  text-align: center;
 
-    &__info {
-        font-size: 0.9em;
-
-        color: #999;
-    }
+  &__info {
+    font-size: 0.9em;
+    color: #999;
+  }
 }
 
 .main .mat-progress-circle {
-    width: 50px;
-    height: 50px;
-    margin: 1em auto;
+  width: 50px;
+  height: 50px;
+  margin: 1em auto;
 }
