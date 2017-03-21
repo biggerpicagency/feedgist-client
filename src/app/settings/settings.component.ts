@@ -65,9 +65,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.ready = true;
         this.isWebPushSupported = OneSignal.isPushNotificationsSupported();
 
-        OneSignal.isPushNotificationsEnabled().then((isSubscribed) => {
-          this.getUserDeviceSettings(isSubscribed);
-        });
+        OneSignal.push(["getNotificationPermission", (permission) => {
+          if (permission === 'denied') {
+            this.webPushSubscribed = false;
+            this.isWebPushSupported = false;
+          } else {
+            OneSignal.isPushNotificationsEnabled().then((isSubscribed) => {
+              this.getUserDeviceSettings(isSubscribed);
+            });
+          }
+        }]);
 
         this.oneSignalDetector.unsubscribe();
       }
@@ -107,11 +114,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     if (this.webPushSubscribed) {
+
       if (!this.getWebPushPlayerId()) {
         OneSignal.push(function() {
-          OneSignal.registerForPushNotifications({
-            modalPrompt: false
-          });
+          OneSignal.registerForPushNotifications();
         });
 
         OneSignal.push(() => {
@@ -150,6 +156,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
           if (userId) {
             this.setWebPushPlayerId(userId);
             this.callApiForSave();
+          } else {
+            this.webPushSubscribed = false;
+            this.snackBar.open('You are not registered to receive Push Notifications.', null, {
+              duration: 2000
+            });
           }
         });
       });

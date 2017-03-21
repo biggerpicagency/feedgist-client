@@ -37,7 +37,32 @@
             *ngFor="let page of category.pages"
             (click)="selectPage(page)"
             [ngClass]="{'page--selected': page.selected}">
-              <img [src]="page.picture.url" alt="">
+              <img [src]="page.picture.url" width="50" alt="">
+              <h3 class="headline headline--3 page__name">
+                {{ page.name | cutText:true:25:'...' }}
+              </h3>
+          </article>
+        </div>
+      </section>
+
+      <div class="wrapper text-center" *ngIf="!loadingShow && !otherPagesLoaded && otherPages.pages">
+        <h1 class="headline headline--2">Can't see the page you like?</h1>
+        <button md-raised-button (click)="loadOtherPages()">Load other pages</button>
+      </div>
+
+      <section class="category" *ngIf="otherPagesLoaded">
+        <h2 class="headline headline--1">
+          Other pages
+          <small class="category__counter">({{ otherPages.pages.length }})</small>
+        </h2>
+
+        <div class="category__pages">
+          <article 
+            class="page" 
+            *ngFor="let page of otherPages.pages"
+            (click)="selectPage(page)"
+            [ngClass]="{'page--selected': page.selected}">
+              <img [src]="page.picture.url" width="50" alt="">
               <h3 class="headline headline--3 page__name">
                 {{ page.name | cutText:true:25:'...' }}
               </h3>

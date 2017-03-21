@@ -20,9 +20,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
   searchTerm$ = new Subject<string>();
   categories = [];
   all = [];
+  otherPages = [];
   selectedPagesBar = null;
   loadingShow = false;
   lazyLoadingOffset: Number = 100;
+  otherPagesLoaded: Boolean = false;
 
   constructor(
               private api: ApiService, 
@@ -34,6 +36,33 @@ export class SettingsComponent implements OnInit, OnDestroy {
                       .subscribe(results => {
                         this.results = results;
                       });
+  }
+
+  ngOnInit() {
+    this.loadingShow = true;
+    this.settingsObservable = this.api.get('feed/settings').subscribe((res) => {
+      this.searchService.pages = res.all;
+      this.selected.pagesIds = res.selected.ids;
+      this.selected.init(res.categories, this.selected.pagesIds, res.selected.pages);
+      
+      if (res.categories[0].name === 'Other pages') {
+        this.categories = res.categories.splice(1);
+        this.otherPages = res.categories[0];
+      } else {
+        this.categories = res.categories;
+      }
+
+      if (res.selected.pages.length > 0) {
+        this.openSelectedPagesBar();
+      }
+      
+      this.loadingShow = false;
+    });
+  }
+
+  ngOnDestroy() {
+    this.closeSelectedPagesBar();
+    this.settingsObservable.unsubscribe();
   }
 
   openSelectedPagesBar() {
@@ -62,24 +91,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     return this.selected.pagesIds.indexOf(pageId) !== -1;
   }
 
-  ngOnInit() {
-    this.loadingShow = true;
-    this.settingsObservable = this.api.get('feed/settings').subscribe((res) => {
-      this.searchService.pages = res.all;
-      this.categories = res.categories;
-      this.selected.pagesIds = res.selected.ids;
-      this.selected.init(this.categories, this.selected.pagesIds, res.selected.pages);
-
-      if (res.selected.pages.length > 0) {
-        this.openSelectedPagesBar();
-      }
-      
-      this.loadingShow = false;
-    });
-  }
-
-  ngOnDestroy() {
-    this.closeSelectedPagesBar();
-    this.settingsObservable.unsubscribe();
+  loadOtherPages() {
+    this.otherPagesLoaded = true;
   }
 }
