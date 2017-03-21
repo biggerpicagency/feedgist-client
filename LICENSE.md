@@ -12,7 +12,7 @@ copies or substantial portions of the Software.
 
 Credit is given to the project, using text:
 
-A part of this project was created using FeedGist, an open source project by <a href=”https://www.biggerpicture.agency”> Bigger Picture</a>.
+A part of this project was created using FeedGist, an open source project by <a href=”https://www.biggerpicture.agency”>Bigger Picture</a>.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
