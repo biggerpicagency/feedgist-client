@@ -1,0 +1,76 @@
+html {
+  box-sizing: border-box;
+}
+
+*, 
+*:before, 
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+button {
+  -moz-osx-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+html, 
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  background-image: -ms-radial-gradient(center, ellipse farthest-corner, #3BE4DF 15%, #3B5999 100%);
+  background-image: -moz-radial-gradient(center, ellipse farthest-corner, #3BE4DF 15%, #3B5999 100%);
+  background-image: -o-radial-gradient(center, ellipse farthest-corner, #3BE4DF 15%, #3B5999 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 286, color-stop(15, #3BE4DF), color-stop(100, #3B5999));
+  background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #3BE4DF 15%, #3B5999 100%);
+  background-image: radial-gradient(ellipse farthest-corner at center, #3BE4DF 15%, #3B5999 100%);
+
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 14px;
+    weight: 400;
+  }
+  line-height: 1.5;
+  color: #666;
+}
+
+.app-root {
+  color: #fff;
+}
+
+.container {
+  @extend %containerCommonStyles;
+  width: 90%;
+  max-width: 1180px;
+  overflow: hidden;
+}
+
+.container-small {
+  @extend %containerCommonStyles;
+  width: 80%;
+  max-width: 400px;
+}
+
+.wrapper {
+  padding: 2em 0;
+}
+
+a {
+  text-decoration: none;
+  color: #3ad2d6;
+
+  &:hover {
+    color: #3b5999;
+  }
+}
+
+textarea {
+  min-height: 150px;
+}

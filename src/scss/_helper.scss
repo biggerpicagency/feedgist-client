@@ -1,0 +1,24 @@
+%containerCommonStyles {
+  position: relative;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.clearfix:after { 
+  content: "."; 
+  visibility: hidden; 
+  display: block; 
+  height: 0; 
+  clear: both;
+}
+
+.vertical-middle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
