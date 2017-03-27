@@ -22,7 +22,7 @@ module.exports = {
     handler: 'fastest'
   }, {
     urlPattern: /fonts\.googleapis\.com/,
-    handler: 'fastest'
+    handler: 'cacheFirst'
   }, {
     urlPattern: /fonts\.gstatic\.com/,
     handler: 'cacheFirst'
